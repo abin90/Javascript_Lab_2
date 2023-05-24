@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>SignUp</title>
+</head>
+<body>
+	<h3>Sign Up</h3>
+	<form onsubmit="return false;">
+		<label for="name">Name:</label><br>
+		<input id="name" type="text" name="name"><br><br>
+		<label for="mail">Email:</label><br>
+		<input id="mail" type="text" name=""><br><br>
+		<label for="num">Phone Number:</label><br>
+		<input id="num" type="tel" name=""><br><br>
+		<label for="pword">Password:</label><br>
+		<input id="pword" type="password" name=""><br><br>
+		<button type="submit" onclick="myValidation()">Submit</button>
+	</form>
+	<p id="errorName"></p>
+	<p id="errorEmail"></p>
+	<p id="errorPhone"></p>
+	<p id="errorPassword"></p>
+	<script type="text/javascript">
+		function myValidation(){
+			var messageName=document.getElementById("errorName");
+			messageName.innerHTML="";
+			var name=document.getElementById("name").value;
+			try{
+				if (name.match(/[0-9]/)) throw "Name should not contain numbers"
+				if(name.length<3) throw "Name should be atleast three character length"
+			}
+		    catch(err){
+			messageName.innerHTML=err;
+		    }
+		    var messageEmail=document.getElementById("errorEmail");
+		    messageEmail.innerHTML="";
+		    var mail=document.getElementById("mail").value;
+		    var mailformat =/(^[0-9a-zA-Z_]+@[a-z]+.[a-z]+$)/;
+		    if(mail.match(mailformat)){
+		    messageEmail.innerHTML="";
+		    }else{
+		    	messageEmail.innerHTML="Invalid Email id";
+		    }
+
+		    var messagePhone=document.getElementById("errorPhone");
+		    messagePhone.innerHTML="";
+		    var phone=document.getElementById("num").value;
+		    try{
+		    	if(phone.match(/[a-zA-Z]/)) throw "Phone number should not contain alphabets"
+			    if(phone.length<10) throw "Phone number should be atleast 10 numbers in length"
+		        }
+            catch(err){
+            	messagePhone.innerHTML=err;
+            }
+
+            var messagePassword=document.getElementById("errorPassword");
+            messagePassword.innerHTML="";
+            var passwrd=document.getElementById("pword").value;
+            try{
+            	if(passwrd.length<6) throw "Password should contain atleast 6 characters"
+            }
+            catch(err){
+            	messagePassword.innerHTML=err;
+            }
+
+		}
+	</script>
+
+</body>
+</html>
